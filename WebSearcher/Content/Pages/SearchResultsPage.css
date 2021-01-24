@@ -1,0 +1,18 @@
+﻿.row-result-anchor {
+    display: block;
+    padding: 1em;
+}
+
+.row-result-anchor label {
+    cursor: pointer;
+}
+
+.no-results-label {
+    padding: 1em;
+}
+
+.tab-content {
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}

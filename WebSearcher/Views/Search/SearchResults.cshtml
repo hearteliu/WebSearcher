@@ -1,0 +1,85 @@
+﻿@model WebSearcher.Models.ViewModels.SearchResultsViewModel
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <label>@WebSearcher.Resources.Constants.Constants.Labels.YouSearchedForLabel:</label>
+    </div>
+    <div class="col-md-8">
+        <label>@Model.SearchPhrase</label>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <label>@WebSearcher.Resources.Constants.Constants.Labels.UrlLabel:</label>
+    </div>
+    <div class="col-md-8">
+        <label><a href="@Model.Url" target="_blank">@Model.Url</a></label>
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <a href="@Url.Action("Index", "Home")">@WebSearcher.Resources.Constants.Constants.Labels.PerformANewSearch</a>
+    </div>
+</div>
+<hr />
+<div class="row">
+    <ul class="nav nav-tabs" id="tabbed-result" role="tablist">
+        @foreach (var result in Model.SearchEngineResults)
+        {
+            <li class="nav-item waves-effect waves-light">
+                <a class="nav-link"
+                   id="@result.SearchEngine-tab"
+                   data-toggle="tab"
+                   href="#@result.SearchEngine"
+                   role="tab"
+                   aria-controls="@result.SearchEngine"
+                   aria-selected="false">@result.SearchEngine</a>
+            </li>
+        }
+    </ul>
+
+    <div class="tab-content" id="tab-content">
+        @foreach (var searchEngineResult in Model.SearchEngineResults)
+        {
+            <div class="tab-pane fade" id="@searchEngineResult.SearchEngine" role="tabpanel" aria-labelledby="@searchEngineResult.SearchEngine-tab">
+                @if (searchEngineResult.SearchResults.Count == 0)
+                {
+                    <label class="no-results-label">@searchEngineResult.SearchEngine@WebSearcher.Resources.Constants.Constants.Labels.ReturnedNoResults</label>
+                }
+                @foreach (var searchResult in searchEngineResult.SearchResults)
+                {
+                    <a href="@searchResult.Url" class="row-result-anchor" target="_blank">
+                        <div class="row">
+                            <div class="col-md-1">
+                                <label>@WebSearcher.Resources.Constants.Constants.Labels.Rank: </label> <label>@searchResult.Position</label>
+                            </div>
+                            <div class="col-md-11">
+                                <label>@searchResult.Description</label>
+                            </div>
+                        </div>
+                    </a>
+                }
+            </div>
+        }
+    </div>
+</div>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-12">
+        <a href="@Url.Action("Index", "Home")">@WebSearcher.Resources.Constants.Constants.Labels.PerformANewSearch</a>
+    </div>
+</div>
+
+<hr />
+
+@section scripts {
+    <script type="text/javascript" src="~/Scripts/Pages/SearchResultsPage.js"></script>
+}
+
+<link href="~/Content/Pages/SearchResultsPage.css" rel="stylesheet" />
+

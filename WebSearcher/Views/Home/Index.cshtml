@@ -1,0 +1,70 @@
+﻿@model WebSearcher.Models.HomePageViewModel
+
+<div class="row">
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+    @using (Html.BeginForm("Search", "Search", FormMethod.Post))
+    {
+
+        <hr />
+
+        <div class="row">
+            <div class="col-md-2">
+                <label>@WebSearcher.Resources.Constants.Constants.Labels.SearchPhraseLabel</label>
+            </div>
+
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.SearchPhrase)
+                @Html.ValidationMessageFor(m => m.SearchPhrase, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <label>@WebSearcher.Resources.Constants.Constants.Labels.UrlLabel</label>
+            </div>
+
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Url)
+                @Html.ValidationMessageFor(m => m.Url, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <hr />
+
+        <div class="row">
+            <div class="col-md-12">
+                <label>@WebSearcher.Resources.Constants.Constants.Labels.SearchGoogleLabel</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">
+                <label>@WebSearcher.Resources.Constants.Constants.Labels.SearchBingLabel</label>
+            </div>
+
+            <div class="col-md-10">
+                @Html.CheckBoxFor(m => m.SearchBing)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <label>@WebSearcher.Resources.Constants.Constants.Labels.SearchYahooLabel</label>
+            </div>
+
+            <div class="col-md-10">
+                @Html.CheckBoxFor(m => m.SearchYahoo)
+            </div>
+        </div>
+        <hr />
+
+        <div class="row">
+            <div class="col-md-12">
+                <input type="submit" class="submit-button" value="@WebSearcher.Resources.Constants.Constants.Labels.SearchButtonLabel" />
+            </div>
+        </div>
+        <hr />
+
+    }
+</div>
+
+<link href="~/Content/Pages/HomePage.css" rel="stylesheet" />

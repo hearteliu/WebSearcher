@@ -1,0 +1,16 @@
+﻿.submit-button {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.row {
+    padding: 1em;
+}
+
+input[type=text] {
+    display: block;
+    width: 100%;
+    max-width: 1000px;
+}
